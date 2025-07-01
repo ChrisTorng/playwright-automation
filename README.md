@@ -10,6 +10,12 @@ npm init playwright@latest
 
 Copy `.env.example` to `.env` and fill in your credentials.
 
+For debug Node, install `ts-node`:
+
+```
+npm install ts-node
+```
+
 ## Run automation
 
 ```

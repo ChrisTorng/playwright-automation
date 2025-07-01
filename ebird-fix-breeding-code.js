@@ -12,8 +12,8 @@ async function main() {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForLoadState('networkidle');
   console.log('登入成功，開始處理連結...');
-  const links = await page.$$eval('a', (as) =>
-    as.map(a => a.getAttribute('href')).filter(href => href && /^\/atlastw\/checklist\//.test(href))
+  const links = await page.$$eval('a', as =>
+    as.map(a => a.getAttribute('href')).filter(href => !!href && /^\/atlastw\/checklist\//.test(href))
   );
   console.log(`找到 ${links.length} 個符合條件的連結。`);
   const startIndex = 0; // 修改這裡可指定從第幾個連結開始

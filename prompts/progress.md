@@ -11,3 +11,16 @@ VSCode Insiders/GitHub Copilot/GPT-4.1/Agent:
 
 [3.md](3.md)
 1. 使用執行測試的方式有限時 30 秒，但我想要做的是網頁自動化，執行時間會超過，我想要改為像一般的程式執行，只是單純使用 Playwright 的 API 來操作網頁。
+2. 請設定讓我可以用 VSCode 偵錯 node 程式，我現在要執行的是 `node ebird-fix-breeding-code.ts`。
+3. C:\Program Files\nodejs\node.exe -r ts-node/register .\ebird-fix-breeding-code.ts
+D:\Projects\GitHub\ChrisTorng\playwright-automation\node_modules\ts-node\src\index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+source-map-support.js:722
+TSError: ⨯ Unable to compile TypeScript:
+4. 奇怪，錯誤還是一樣，但我也確定檔案裡沒有寫 export:
+5. 我放棄使用 TS，改用 JavaScript 來寫，請幫我把這個檔案轉成 JavaScript。
+6. 修正 launch.json。
+
+[4.md](4.md)
+1. 
