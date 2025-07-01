@@ -19,29 +19,21 @@ async function main() {
   const startIndex = 0; // 修改這裡可指定從第幾個連結開始
   for (let i = startIndex; i < links.length; i++) {
     console.log(`目前點擊第 ${i + 1} 個連結，總共 ${links.length} 個: ${links[i]}`);
-    await page.goto('https://ebird.org' + links[i]);
+    // await page.goto('https://ebird.org' + links[i]);
+    await page.goto('https://ebird.org/atlastw/checklist/S254263743');
     const nodes = await page.$$eval('*', nodes => nodes.map(n => n.textContent || ''));
-    let foundConfirmed = false;
-    let foundTarget = false;
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].includes('FL Recently Fledged Young (Confirmed)')) {
-        for (let j = i - 1; j >= 0; j--) {
-          if (nodes[j].includes('東方黃鶺鴒')) {
-            foundConfirmed = true;
-            foundTarget = true;
-            break;
-          }
-        }
-        break;
-      }
+    let confirmedIndex = nodes[0].indexOf('FL Recently Fledged Young');
+    if (confirmedIndex === -1) {
+        continue;
     }
-    if (foundConfirmed && foundTarget) {
-      await page.getByLabel('Totals').getByRole('link', { name: 'Edit Species' }).click();
-      await page.locator('#weywag8_breedingCode').getByRole('link', { name: 'Breeding Code' }).click();
-      await page.getByRole('button', { name: 'Save' }).click();
-    } else {
-      console.log('未同時找到 FL Recently Fledged Young (Confirmed) 且其前面有 東方黃鶺鴒，跳過此連結');
+    let targetIndex = nodes[0].indexOf('東方黃鶺鴒');
+    if (targetIndex === -1 || targetIndex > confirmedIndex) {
+        continue;
     }
+
+    await page.getByLabel('Totals').getByRole('link', { name: 'Edit Species' }).click();
+    await page.locator('#weywag8_breedingCode').getByRole('link', { name: 'Breeding Code' }).click();
+    await page.getByRole('button', { name: 'Save' }).click();
   }
   await browser.close();
 }
