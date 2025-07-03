@@ -23,4 +23,10 @@ TSError: ⨯ Unable to compile TypeScript:
 6. 修正 launch.json。
 
 [4.md](4.md)
-1. 
+1. 請將所有取得網址反序排序，再開始依序前往網址。
+2. 排序請以字串內容反序排序，也就是從 Z 到 A 的順序。
+3. 我要再修改排序方法。目前網址格式是 `/atlastw/checklist/S98170824`，就是在 `/atlastw/checklist/S` 之後有數字。請截取數字部分，並以數字大小由大到小的反序排序。
+
+[5.md](5.md)
+1. 我要在游標這個位置，增加在網頁內找到這個元素: `<select id="p-weywag8_bcode">`，確定其值選擇的是 `<option value="FL" selected="selected">FL Recently Fledged Young</option>`，並將選取項目改為 `<option value="">Choose the highest possible code...</option>`。若沒有找到該元素，或選取項目不是 `FL Recently Fledged Young`，則輸出 console 錯誤並中斷執行。
+2. 我要在 nodes 字串陣列中，先排除 元素 0 與 1。剩下的項目中，由末端往前尋找到 `東方黃鶺鴒` 的部份符合項目即停止搜尋，並在尋找過程中記錄是否有遇到 `\nFL Recently Fledged Young (Confirmed)` 的完全符合項目。若在停止搜尋前有遇到 `\nFL Recently Fledged Young (Confirmed)`，則視為符合條件，繼續往後執行。若沒有找到  `東方黃鶺鴒` 或停止搜尋前沒有找到  `\nFL Recently Fledged Young (Confirmed)`，則視為不符合條件，跳過該網頁，繼續迴圈，進入下一個網址項目。
